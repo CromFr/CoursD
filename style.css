@@ -43,3 +43,7 @@ h1 {
     right: auto !important;
     font-size: 1.2em !important;   
 }
+
+.slow{
+    transition-duration: 2s !important;   
+}

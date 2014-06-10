@@ -59,7 +59,6 @@
                     </section>
                     <section data-markdown>
                         ## C'est comme du C++
-
                         - Compilation vers code natif
                         - Pointeurs
                         - Templates
@@ -71,17 +70,16 @@
                     </section>
                     <section data-markdown>
                         ## C'est comme du Java/ C♯
-
                         - Garbage collector
                         - Interfaces
                         - Nested classes
                         - Delegates
                         - Reference / value types
                         - Properties
+                        - Réflexion
                     </section>
                     <section data-markdown>
                         ## C'est comme du Python
-
                         - Modules
                         - Packages
                         - Nested functions
@@ -103,13 +101,100 @@
                             - static (TLS) / __gshared
                         - Interfaçage avec C &amp; C++
                     </section>
-                        
 				</section>
                 
                 <section>
                     <section>
                         <h1>Syntaxe</h1>
                         <img src="img/syntax.svg" class="raw stretch"/>
+                    </section>
+                    <section data-markdown>
+                        ## Pour faire court...
+                        - Ca ressemble à du Java
+                        - Générique / polyvalente
+                        - Pas trop verbeuse (il y a mieux)
+                        - Méchament puissante
+                    </section>
+                    <section data-markdown>
+                        ## Un peu de troll !
+                        
+                        ```d
+                        //Ceci est du beau code D !
+                        Vect3D!T opBinary(string op, O)(in O other){
+                            static if(__traits(isArithmetic, O))
+                                return Vect3D!T(
+                                    mixin("x"~op~"other"), 
+                                    mixin("y"~op~"other"), 
+                                    mixin("z"~op~"other"));
+                            else static if(is(O : Vect3D!T)
+                                return Vect3D!T(
+                                    mixin("x"~op~"other.x"), 
+                                    mixin("y"~op~"other.y"), 
+                                    mixin("z"~op~"other.z"));
+                        }
+                        ```
+                        Surcharge tous les opérateurs binaires (+, -, *, /)
+                        
+                        Vect3D op Vect3D ainsi que Vect3D op nombre
+                    </section>
+                    <section data-markdown>
+                        ## La même chose en C++
+                        
+                        ```cpp
+                        //Du code C++ un peu répétitif
+                        Vect3D&lt;T&gt; operator+(const Vect3D&lt;T&gt;&amp; other){
+                            return Vect3D&lt;T&gt;(
+                                x+other.x, 
+                                y+other.y, 
+                                z+other.z);
+                        }
+                        Vect3D&lt;T&gt; operator-(const Vect3D&lt;T&gt;&amp; other){
+                            return Vect3D&lt;T&gt;(
+                                x-other.x, 
+                                y-other.y, 
+                                z-other.z);
+                        }
+                        Vect3D&lt;T&gt; operator*(const Vect3D&lt;T&gt;&amp; other){
+                            return Vect3D&lt;T&gt;(
+                                x*other.x, 
+                                y*other.y, 
+                                z*other.z);
+                        }
+                        Vect3D&lt;T&gt; operator/(const Vect3D&lt;T&gt;&amp; other){
+                            return Vect3D&lt;T&gt;(
+                                x/other.x, 
+                                y/other.y, 
+                                z/other.z);
+                        }
+                        Vect3D&lt;T&gt; operator+(const float&amp; other){
+                            return Vect3D&lt;T&gt;(
+                                x+other, 
+                                y+other, 
+                                z+other);
+                        }
+                        Vect3D&lt;T&gt; operator-(const float&amp; other){
+                            return Vect3D&lt;T&gt;(
+                                x-other, 
+                                y-other, 
+                                z-other);
+                        }
+                        Vect3D&lt;T&gt; operator*(const float&amp; other){
+                            return Vect3D&lt;T&gt;(
+                                x*other, 
+                                y*other, 
+                                z*other);
+                        }
+                        Vect3D&lt;T&gt; operator/(const float&amp; other){
+                            return Vect3D&lt;T&gt;(
+                                x/other, 
+                                y/other, 
+                                z/other);
+                        }
+                        ```
+                        Notez la scrollbar !
+                    </section>
+                    <section data-markdown>
+                        # Passons aux choses sérieuses !
                     </section>
                     <section data-markdown>
                         ## Hello world!
@@ -121,7 +206,21 @@
                         }
                         ```
                     </section>
+                    <section data-markdown>
+                        ## Hello you !
+                        ```d
+                        import std.stdio;
+                        
+                        void main(){
+                            string name = "Students";
+                            writeln("Hello ",name,"!");
+                        }
+                        ```
+                        Ca vous rapelle de bons souvenirs?
+                    </section>
                     
+                    
+                        
                 </section>
 			</div>
 
