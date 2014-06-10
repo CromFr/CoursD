@@ -1,0 +1,45 @@
+img.raw {
+    background-color: transparent!important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+img.logo {
+    background-color: transparent!important;
+    border: 0 !important;
+    box-shadow: none !important;
+    vertical-align: middle !important;
+    height: 96px;
+}
+
+img.small {
+    max-width: 50%;
+    max-height: 50%;
+}
+img.aside {
+    position: absolute;
+    left: 8%;
+}
+img.dlogo{
+    height: 150px;
+    vertical-align: middle !important;
+    padding-bottom: 15px;
+}
+
+video {
+    border-width: 10px;
+    border-style: solid;
+    border-color: #eee;
+    border-radius: 5px;
+    vertical-align: middle !important;   
+}
+
+h1 {
+    line-height: 1.0 !important;
+}
+
+.slide-number{
+    left: 10px !important;
+    right: auto !important;
+    font-size: 1.2em !important;   
+}
