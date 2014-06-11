@@ -40,190 +40,271 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
-					<h1>Le Langage <img src="img/dlang.png" class="dlogo raw"/></h1>
-					<h3>Thomas ABOT - Thibaut CHARLES</h3>
-				</section>
-
-				<section data-markdown>
-                    # Sommaire
-
-                    - Qu'est ce que c'est?
-                    - Syntaxe
-				</section>
                 
-				<section>
-                    <section>
-                        <h1>Qu'est ce que c'est?</h1>
-                        <img src="img/what.svg" class="raw stretch"/>
-                    </section>
-                    <section data-markdown>
-                        ## C'est comme du C++
-                        - Compilation vers code natif
-                        - Pointeurs
-                        - Templates
-                            - Plus simple et flexibles
-                            - CTFE
-                        - Rapide
-                        - Surcharge d'opérateurs
-                            - Avec l'opérateur ^^
-                    </section>
-                    <section data-markdown>
-                        ## C'est comme du Java/ C♯
-                        - Garbage collector
-                        - Interfaces
-                        - Nested classes
-                        - Delegates
-                        - Reference / value types
-                        - Properties
-                        - Réflexion
-                    </section>
-                    <section data-markdown>
-                        ## C'est comme du Python
-                        - Modules
-                        - Packages
-                        - Nested functions
-                        - Anonymous functions
-                        - Lazy evaluation
-                        - Functionnal Programming
-                    </section>
-                    <section data-markdown>
-                        ## ''D is for real programmers''
-                        
-                        - Qualité
-                            - UnitTests
-                            - Contract programming
-                            - @safe / @trusted / @system
-                            - @nothrow, @pure
-                            - debug/release builds
-                        - Programmation asynchrone
-                            - Locks / message passing
-                            - static (TLS) / __gshared
-                        - Interfaçage avec C &amp; C++
-                    </section>
-				</section>
                 
-                <section>
-                    <section>
-                        <h1>Syntaxe</h1>
-                        <img src="img/syntax.svg" class="raw stretch"/>
-                    </section>
-                    <section data-markdown>
-                        ## Pour faire court...
-                        - Ca ressemble à du Java
-                        - Générique / polyvalente
-                        - Pas trop verbeuse (il y a mieux)
-                        - Méchament puissante
-                    </section>
-                    <section data-markdown>
-                        ## Un peu de troll !
-                        
-                        ```d
-                        //Ceci est du beau code D !
-                        Vect3D!T opBinary(string op, O)(in O other){
-                            static if(__traits(isArithmetic, O))
-                                return Vect3D!T(
-                                    mixin("x"~op~"other"), 
-                                    mixin("y"~op~"other"), 
-                                    mixin("z"~op~"other"));
-                            else static if(is(O : Vect3D!T)
-                                return Vect3D!T(
-                                    mixin("x"~op~"other.x"), 
-                                    mixin("y"~op~"other.y"), 
-                                    mixin("z"~op~"other.z"));
-                        }
-                        ```
-                        Surcharge tous les opérateurs binaires (+, -, *, /)
-                        
-                        Vect3D op Vect3D ainsi que Vect3D op nombre
-                    </section>
-                    <section data-markdown>
-                        ## La même chose en C++
-                        
-                        ```cpp
-                        //Du code C++ un peu répétitif
-                        Vect3D&lt;T&gt; operator+(const Vect3D&lt;T&gt;&amp; other){
-                            return Vect3D&lt;T&gt;(
-                                x+other.x, 
-                                y+other.y, 
-                                z+other.z);
-                        }
-                        Vect3D&lt;T&gt; operator-(const Vect3D&lt;T&gt;&amp; other){
-                            return Vect3D&lt;T&gt;(
-                                x-other.x, 
-                                y-other.y, 
-                                z-other.z);
-                        }
-                        Vect3D&lt;T&gt; operator*(const Vect3D&lt;T&gt;&amp; other){
-                            return Vect3D&lt;T&gt;(
-                                x*other.x, 
-                                y*other.y, 
-                                z*other.z);
-                        }
-                        Vect3D&lt;T&gt; operator/(const Vect3D&lt;T&gt;&amp; other){
-                            return Vect3D&lt;T&gt;(
-                                x/other.x, 
-                                y/other.y, 
-                                z/other.z);
-                        }
-                        Vect3D&lt;T&gt; operator+(const float&amp; other){
-                            return Vect3D&lt;T&gt;(
-                                x+other, 
-                                y+other, 
-                                z+other);
-                        }
-                        Vect3D&lt;T&gt; operator-(const float&amp; other){
-                            return Vect3D&lt;T&gt;(
-                                x-other, 
-                                y-other, 
-                                z-other);
-                        }
-                        Vect3D&lt;T&gt; operator*(const float&amp; other){
-                            return Vect3D&lt;T&gt;(
-                                x*other, 
-                                y*other, 
-                                z*other);
-                        }
-                        Vect3D&lt;T&gt; operator/(const float&amp; other){
-                            return Vect3D&lt;T&gt;(
-                                x/other, 
-                                y/other, 
-                                z/other);
-                        }
-                        ```
-                        Notez la scrollbar !
-                    </section>
-                    <section data-markdown>
-                        # Passons aux choses sérieuses !
-                    </section>
-                    <section data-markdown>
-                        ## Hello world!
-                        ```d
-                        import std.stdio;
-                        
-                        void main(){
-                            writeln("Hello, World!");
-                        }
-                        ```
-                    </section>
-                    <section data-markdown>
-                        ## Hello you !
-                        ```d
-                        import std.stdio;
-                        
-                        void main(){
-                            string name = "Students";
-                            writeln("Hello ",name,"!");
-                        }
-                        ```
-                        Ca vous rapelle de bons souvenirs?
-                    </section>
-                    
-                    
-                        
-                </section>
+                
+<section>
+    <h1>Le Langage <img src="img/dlang.png" class="dlogo raw"/></h1>
+    <h3>Thomas ABOT - Thibaut CHARLES</h3>
+</section>
+
+<section data-markdown>
+    # Sommaire
+
+    - Qu'est ce que c'est?
+    - Syntaxe
+    - ...
+    - Tests unitaires &amp; prog par contrat
+    - Templates
+    - Surcharge d'opérateurs
+</section>
+
+<section>
+    <section>
+        <h1>Qu'est ce que c'est?</h1>
+        <img src="img/what.svg" class="raw stretch"/>
+    </section>
+    <section data-markdown>
+        ## C'est comme du C++
+        - Compilation vers code natif
+        - Pointeurs
+        - Templates
+            - Plus simple et flexibles
+            - CTFE
+        - Rapide
+        - Surcharge d'opérateurs
+            - Avec l'opérateur ^^
+    </section>
+    <section data-markdown>
+        ## C'est comme du Java/ C♯
+        - Pas de pointeurs
+        - Garbage collector
+        - Héritage simple, Interfaces
+        - Nested classes
+        - Delegates
+        - Reference / value types
+        - Properties
+        - Réflexion
+    </section>
+    <section data-markdown>
+        ## C'est comme du Python
+        - Modules
+        - Packages
+        - Nested functions
+        - Anonymous functions
+        - Lazy evaluation
+        - Functionnal Programming
+    </section>
+    <section data-markdown>
+        ## ''D is for real programmers''
+
+        - Qualité
+            - UnitTests
+            - Contract programming
+            - @safe / @trusted / @system
+            - @nothrow, @pure
+            - debug/release builds
+        - Programmation asynchrone
+            - Locks / message passing
+            - static (TLS) / __gshared
+        - Interfaçage avec C &amp; C++
+    </section>
+</section>
+
+<section>
+    <section>
+        <h1>Syntaxe</h1>
+        <img src="img/syntax.svg" class="raw stretch"/>
+    </section>
+    <section data-markdown>
+        ## Pour faire court...
+        - Ca ressemble à du Java
+        - Générique / polyvalente
+        - Pas trop verbeuse (il y a mieux)
+        - Méchament puissante
+    </section>
+    <section data-markdown>
+        ## Un peu de troll !
+
+        ```d
+        // 12 lignes de beau code D
+        Vect3D!T opBinary(string op, O)(in O other){
+            static if(__traits(isArithmetic, O))
+                return Vect3D!T(
+                    mixin("x"~op~"other"), 
+                    mixin("y"~op~"other"), 
+                    mixin("z"~op~"other"));
+            else static if(is(O : Vect3D!T)
+                return Vect3D!T(
+                    mixin("x"~op~"other.x"), 
+                    mixin("y"~op~"other.y"), 
+                    mixin("z"~op~"other.z"));
+        }
+        ```
+        Surcharge tous les opérateurs binaires (+, -, *, /)
+
+        Vect3D op Vect3D ainsi que Vect3D op nombre
+    </section>
+    <section data-markdown>
+        ## La même chose en C++
+
+        ```cpp
+        // Beurk!
+        Vect3D&lt;T&gt; operator+(const Vect3D&lt;T&gt;&amp; other){
+            return Vect3D&lt;T&gt;(
+                x+other.x, 
+                y+other.y, 
+                z+other.z);
+        }
+        Vect3D&lt;T&gt; operator-(const Vect3D&lt;T&gt;&amp; other){
+            return Vect3D&lt;T&gt;(
+                x-other.x, 
+                y-other.y, 
+                z-other.z);
+        }
+        Vect3D&lt;T&gt; operator*(const Vect3D&lt;T&gt;&amp; other){
+            return Vect3D&lt;T&gt;(
+                x*other.x, 
+                y*other.y, 
+                z*other.z);
+        }
+        Vect3D&lt;T&gt; operator/(const Vect3D&lt;T&gt;&amp; other){
+            return Vect3D&lt;T&gt;(
+                x/other.x, 
+                y/other.y, 
+                z/other.z);
+        }
+        Vect3D&lt;T&gt; operator+(const float&amp; other){
+            return Vect3D&lt;T&gt;(
+                x+other, 
+                y+other, 
+                z+other);
+        }
+        Vect3D&lt;T&gt; operator-(const float&amp; other){
+            return Vect3D&lt;T&gt;(
+                x-other, 
+                y-other, 
+                z-other);
+        }
+        Vect3D&lt;T&gt; operator*(const float&amp; other){
+            return Vect3D&lt;T&gt;(
+                x*other, 
+                y*other, 
+                z*other);
+        }
+        Vect3D&lt;T&gt; operator/(const float&amp; other){
+            return Vect3D&lt;T&gt;(
+                x/other, 
+                y/other, 
+                z/other);
+        }
+        ```
+        Notez la scrollbar !
+
+        - 24 lignes de code C++, 24 en plus par type arithmétique
+        - Pour gérer tous les types arithmétiques (sans conv implicite) 
+            - +300 lignes
+    </section>
+    <section data-markdown>
+        # Passons aux choses sérieuses !
+    </section>
+    <section>
+        <div data-markdown>
+        ## Hello world!
+        ```d
+        import std.stdio;
+
+        void main(){
+            writeln("Hello, World!");
+        }
+        ```
+        </div><br/>
+        <div class="fragment zoom-in" data-markdown>
+        ###### Console
+        ```bash
+        % dmd main.d
+        % ./main
+        Hello, World !
+        ```
+        </div>
+    </section>
+    <section>
+        <div data-markdown>
+        ## Hello you !
+        ```d
+        import std.stdio;
+
+        void main(){
+            string name = "students";
+            writeln("Hello ",name,"!");
+        }
+        ```
+        Ca vous rapelle de bons souvenirs?
+        </div><br/>
+        <div class="fragment zoom-in" data-markdown>
+        ###### Console
+        ```bash
+        % dmd main.d
+        % ./main
+        Hello students!
+        ```
+        </div>
+    </section>
+    <section>
+        <h2>Types de variables</h2>
+        <div align=center data-markdown>
+        |---Nom---|--Init--|-Bits-|-------Type-------|
+        |:---|:----:|:----:|:----|
+        |void|?|1|Sans type|
+        |**bool**|false|1/8|Booléen|
+        |byte|0|8|Entier signé|
+        |ubyte|0|8|Entier positif/nul|
+        |short|0|16|Entier signé|
+        |ushort|0|16|Entier positif/nul|
+        |**int**|0|32|Entier signé|
+        |long|0|64|Entier signé|
+        |**float**|nan|32|Flotant|
+        |**double**|nan|64|Flotant|
+        |real|nan|max|Flotant|
+        |cfloat|nan|64|Flotant complexe|
+        |char|0xFF|8|Caractère|
+        |**string**|""|?|Chaîne de caractères|
+        </div>
+    </section>
+
+    <section>
+        <div data-markdown>
+        ## Tableaux &amp; foreach
+        ```d
+        import std.stdio;
+
+        void main(){
+           string names[] = ["Bryan", "Brendan", "Florentin"];
+           foreach(name ; names){
+               writeln("Hello ",name,"!");
+           }
+        }
+        ```
+        </div><br/>
+        <div class="fragment zoom-in" data-markdown>
+        ###### Console
+        ```bash
+        % dmd main.d
+        % ./main
+        Hello Bryan!
+        Hello Brendan!
+        Hello Florentin!
+        ```
+        </div>
+    </section>
+
+
+
+</section>
+    
+    
+    
 			</div>
-
 		</div>
 
 		<script src="reveal.js/lib/js/head.min.js"></script>
