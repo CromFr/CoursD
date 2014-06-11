@@ -118,80 +118,80 @@
     </section>
     <section data-markdown>
         ## Un peu de troll !
-
+        
         ```d
         // 12 lignes de beau code D
         Vect3D!T opBinary(string op, O)(in O other){
-            static if(__traits(isArithmetic, O))
-                return Vect3D!T(
-                    mixin("x"~op~"other"), 
-                    mixin("y"~op~"other"), 
-                    mixin("z"~op~"other"));
-            else static if(is(O : Vect3D!T)
-                return Vect3D!T(
-                    mixin("x"~op~"other.x"), 
-                    mixin("y"~op~"other.y"), 
-                    mixin("z"~op~"other.z"));
+          static if(__traits(isArithmetic, O))
+            return Vect3D!T(
+              mixin("x"~op~"other"), 
+              mixin("y"~op~"other"), 
+              mixin("z"~op~"other"));
+         else static if(is(O : Vect3D!T)
+            return Vect3D!T(
+              mixin("x"~op~"other.x"), 
+              mixin("y"~op~"other.y"), 
+              mixin("z"~op~"other.z"));
         }
         ```
         Surcharge tous les opérateurs binaires (+, -, *, /)
-
+        
         Vect3D op Vect3D ainsi que Vect3D op nombre
     </section>
     <section data-markdown>
         ## La même chose en C++
 
-        ```cpp
-        // Beurk!
-        Vect3D&lt;T&gt; operator+(const Vect3D&lt;T&gt;&amp; other){
-            return Vect3D&lt;T&gt;(
-                x+other.x, 
-                y+other.y, 
-                z+other.z);
-        }
-        Vect3D&lt;T&gt; operator-(const Vect3D&lt;T&gt;&amp; other){
-            return Vect3D&lt;T&gt;(
-                x-other.x, 
-                y-other.y, 
-                z-other.z);
-        }
-        Vect3D&lt;T&gt; operator*(const Vect3D&lt;T&gt;&amp; other){
-            return Vect3D&lt;T&gt;(
-                x*other.x, 
-                y*other.y, 
-                z*other.z);
-        }
-        Vect3D&lt;T&gt; operator/(const Vect3D&lt;T&gt;&amp; other){
-            return Vect3D&lt;T&gt;(
-                x/other.x, 
-                y/other.y, 
-                z/other.z);
-        }
-        Vect3D&lt;T&gt; operator+(const float&amp; other){
-            return Vect3D&lt;T&gt;(
-                x+other, 
-                y+other, 
-                z+other);
-        }
-        Vect3D&lt;T&gt; operator-(const float&amp; other){
-            return Vect3D&lt;T&gt;(
-                x-other, 
-                y-other, 
-                z-other);
-        }
-        Vect3D&lt;T&gt; operator*(const float&amp; other){
-            return Vect3D&lt;T&gt;(
-                x*other, 
-                y*other, 
-                z*other);
-        }
-        Vect3D&lt;T&gt; operator/(const float&amp; other){
-            return Vect3D&lt;T&gt;(
-                x/other, 
-                y/other, 
-                z/other);
-        }
-        ```
+```cpp
+// Beurk!
+Vect3D&lt;T&gt; operator+(const Vect3D&lt;T&gt;&amp; other){
+   return Vect3D&lt;T&gt;(
+      x+other.x, 
+      y+other.y, 
+      z+other.z);
+}
+Vect3D&lt;T&gt; operator-(const Vect3D&lt;T&gt;&amp; other){
+   return Vect3D&lt;T&gt;(
+      x-other.x, 
+      y-other.y, 
+      z-other.z);
+}
+Vect3D&lt;T&gt; operator*(const Vect3D&lt;T&gt;&amp; other){
+   return Vect3D&lt;T&gt;(
+      x*other.x, 
+      y*other.y, 
+      z*other.z);
+}
+Vect3D&lt;T&gt; operator/(const Vect3D&lt;T&gt;&amp; other){
+   return Vect3D&lt;T&gt;(
+      x/other.x, 
+      y/other.y, 
+      z/other.z);
+}
+Vect3D&lt;T&gt; operator+(const float&amp; other){
+   return Vect3D&lt;T&gt;(
+      x+other, 
+      y+other, 
+      z+other);
+}
+Vect3D&lt;T&gt; operator-(const float&amp; other){
+   return Vect3D&lt;T&gt;(
+      x-other, 
+      y-other, 
+      z-other);
+}
+Vect3D&lt;T&gt; operator*(const float&amp; other){
+   return Vect3D&lt;T&gt;(
+      x*other, 
+      y*other, 
+      z*other);
+}
+Vect3D&lt;T&gt; operator/(const float&amp; other){
+   return Vect3D&lt;T&gt;(
+      x/other, 
+      y/other, 
+      z/other);
+}
+```
         Notez la scrollbar !
 
         - 24 lignes de code C++, 24 en plus par type arithmétique
@@ -252,10 +252,11 @@
     </section>
     <section>
         <h2>Types de variables</h2>
+        <a href="http://dlang.org/type.html">dlang.org/type.html</a>
         <div align=center data-markdown>
         |---Nom---|--Init--|-Bits-|-------Type-------|
         |:---|:----:|:----:|:----|
-        |void|?|1|Sans type|
+        |void|?|8|Sans type|
         |**bool**|false|1/8|Booléen|
         |byte|0|8|Entier signé|
         |ubyte|0|8|Entier positif/nul|
@@ -269,6 +270,25 @@
         |cfloat|nan|64|Flotant complexe|
         |char|0xFF|8|Caractère|
         |**string**|""|?|Chaîne de caractères|
+        </div>
+    </section>
+    <section>
+        <h2>Propriétés des types</h2>
+        <a href="http://dlang.org/property.html">dlang.org/property.html</a>
+        <div align=center data-markdown>
+        |---Nom---|-------Utilité-------|
+        |:---|:----|
+        |.min|Valeur Min|
+        |.max|Valeur Max|
+        |.init|Valeur d'initialisation|
+        |.stringof|Nom|
+        |---|---|
+        |.epsilon|Plus petite valeur possible|
+        |.dig|Nombre max de décimales|
+        |.re|Partie réelle|
+        |.im|Partie imaginaire|
+        |---|---|
+        |.classinfo|[Informations sur le type de la variable](http://dlang.org/phobos/object.html#TypeInfo_Class)|
         </div>
     </section>
 
