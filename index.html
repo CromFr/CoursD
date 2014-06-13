@@ -318,6 +318,30 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         </div>
     </section>
 
+    <section>
+        <div data-markdown>
+        ## Tableaux
+        C++
+        ```cpp
+        auto var = "12" + 5 + 2;//var = ?
+            
+        int tab[5] = {0,1,2,3,4};
+        auto var2 = tab + 6;//var2 = ?
+        ```
+        </div>
+        <div class="fragment zoom-in" data-markdown>
+        D
+        ```d
+        auto var = "12" + 5 + 2;//Compilation error
+        auto var2 = "12" ~ 5 ~ 2;// OK : Concaténation de string~char~char
+            
+        int tab[5] = {0,1,2,3,4};
+        auto var2 = tab + 6;//Compilation error
+        auto var2 = tab[] + 6;//OK : ajout de 6 à chaque élément
+        ```
+        </div>
+    </section>
+
 
 
 </section>
