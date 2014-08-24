@@ -373,6 +373,45 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
 
 
 </section>
+                
+                
+<section>
+    <section>
+        <h1>Tests Unitaires</h1>
+        <img src="img/unittest.svg" class="raw stretch"/>
+    </section>
+    <section data-markdown>
+        ## En bref...
+        
+        - Automatiser des tests du programme
+        - Valider le bon fonctionnement du programme
+        - Limite la casse quand refactoring
+    </section>
+    <section data-markdown>
+        ## unittest{ }
+        ```d
+        unittest{
+            assert((1==2) == false, "Gros problème avec les booléens");
+            assert((5+3)==8, "Gros problème avec les additions");
+            //...
+        }
+        ```
+        Peut 
+    </section>
+    <section data-markdown>
+        ## Coverage
+        
+        - Permet d'évaluer si les tests unitaires ont été bien écrits
+        - Indique combien de fois ont été éxécutées chaque ligne du programme
+        - Renvoi un pourcentage entre lignes éxécutées/non éxécutées
+        
+        ```bash
+        dmd -cov main.d
+        ./main
+        cat main.lst
+        ```
+    </section>
+</section>
     
     
     
