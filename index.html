@@ -341,9 +341,28 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         ```
         </div>
     </section>
-    <!--TODO-->
     <section data-markdown>
-        ## UFCS
+        ## Universal Function Call Syntax (UFCS)
+        Peut paraître sale au premier abord, mais super pratique !
+        ```d
+        function(arg0, arg1);
+        arg0.function(arg1);//même chose
+        
+        function2(arg0);
+        arg0.function2();//même chose
+        arg0.function2;//même chose
+
+        ```
+        Permet d'éviter les "friend" quand ont veut étendre des fonctionnalités déja implémentées:
+        ```d
+        string randomizeCase(in string s){...}
+        someString.randomizeCase();
+        ```
+        Permet d'enchaîner plein de trucs:
+        ```d
+        "Hello Gay World".strip.randomizeCase.rainbowString.center(80,"~")
+        ```
+        
     </section>
     <section>
         <div data-markdown>
@@ -369,8 +388,13 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         ```
         </div>
     </section>
-
-
+    
+    <section data-markdown>
+        # Be lazy !
+        ```d
+        
+        ```
+    </section>
 
 </section>
                 
