@@ -364,6 +364,57 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         ```
         
     </section>
+    <section data-markdown>
+        ## UFCS - Class Properties
+        C++
+        ```cpp
+        class Yolo{//Solution 1, verbeuse
+        public:
+            GetName(){return m_name;}
+            SetName(string name){m_name = name;}
+        private:
+            string m_name;
+        };
+        yoloInstance.GetName();
+        yoloInstance.SetName("toto");
+        
+        class Yolo{//Solution 2, pose des limites
+        public:
+            string name;
+        };
+        yoloInstance.name;
+        yoloInstance.name = "toto";
+        ```
+        ```cpp
+        //Problème
+        class Yolo{
+        public:
+            string name;
+            int GetAge(){return aujourdhui - m_datenaissance;}
+        private:
+            //...
+        };
+        //deux getters, deux syntaxes différentes
+        yoloInstance.name;
+        yoloInstance.GetAge();
+        ```
+    </section>
+    <section data-markdown>
+        ## UFCS - Class Properties
+        D
+        ```d
+        class Yolo{
+        public:
+            string name;
+            @property int age(){return aujourdhui - m_datenaissance;}
+        private:
+            //...
+        }
+        //Même syntaxe
+        yoloInstance.name;
+        yoloInstance.age;
+        ```
+    </section>
     <section>
         <div data-markdown>
         ## Encapsulation
