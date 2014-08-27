@@ -539,7 +539,7 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
                 
 <section>
     <section>
-        <h1>Tests Unitaires</h1>
+        <h1>Tests qualité</h1>
         <img src="img/unittest.svg" class="raw stretch"/>
     </section>
     <section data-markdown>
@@ -558,7 +558,22 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
             //...
         }
         ```
-        Peut 
+        - Ces blocs s'éxécutent avant le main
+        - Peut contenir des classes, fonctions, n'importe quoi...
+        
+        -----
+        
+        ###### Console
+        ```bash
+        dmd -unittest main.d
+        ./main
+        ```
+        - Execute les tests unitaires puis le programme
+    </section>
+    <section data-markdown>
+        ## Prog. par contrat
+        - On définit les contraintes de la fonction (avant de l'écrire)
+        - Lors des tests
     </section>
     <section data-markdown>
         ## Coverage
