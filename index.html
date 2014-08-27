@@ -358,21 +358,29 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         ## Tableaux
         C++
         ```cpp
-        auto var = "12" + 5 + 2;//var = ?
+        auto var1 = "12" + 5 + 2;//var1 = ?
+        auto var2 = "12" + 5 + '2';//var2 = ?
             
         int tab[5] = {0,1,2,3,4};
-        auto var2 = tab + 6;//var2 = ?
+        auto var3 = tab + 6;//var3 = ?
         ```
+        </div>
+        <div class="fragment zoom-in" data-markdown>
+        - var1: Pointeur sur char, dans une case mémoire interdite
+        - var2: Pointeur sur char, vaut ')��� '
+        - var3: Pointeur sur int dans une case mémoire interdite
         </div>
         <div class="fragment zoom-in" data-markdown>
         D
         ```d
-        auto var = "12" + 5 + 2;//Compilation error
+        auto var1 = "12" + 5 + 2;//Compilation error
+            //incompatible types for (("12") + (5)): 'string' and 'int'
         auto var2 = "12" ~ 5 ~ 2;// OK : Concaténation de string~char~char
             
-        int tab[5] = {0,1,2,3,4};
-        auto var2 = tab + 6;//Compilation error
-        auto var2 = tab[] + 6;//OK : ajout de 6 à chaque élément
+        int tab[] = [0,1,2,3,4];
+        auto var3 = tab + 6;//Compilation error
+            //incompatible types for ((tab) + (6)): 'int[]' and 'int'
+        auto var4 = tab[] ~ 6;//OK : Ajoute 6 à la fin du tableau
         ```
         </div>
     </section>
