@@ -60,6 +60,24 @@
 </section>
 
 <section>
+    <section data-markdown>
+        # Prérequis
+        - Connaissance du C++ ou Java
+        - DMD installé, prêt à l'emploi
+          - Debian/Ubuntu: sudo apt-get install dmd
+          - ArchLinux: sudo pacman -S dmd (choisir libphobos)
+          - Windows: [Installez ça](http://downloads.dlang.org/releases/2014/dmd-2.066.0.exe), et changez le PATH pour inclure le dossier contenant dmd.exe
+    </section>
+
+    <section data-markdown>
+        ## Liens utiles
+        - [dub](https://github.com/D-Programming-Language/dub): gestionnaire de projets qui s'occupe des librairies
+        - [Sublime Text](http://www.sublimetext.com/3) avec le plugin [DKit](https://github.com/yazd/DKit) et [DCD](https://github.com/Hackerpilot/DCD): Auto-completion
+        - [GDC](http://gdcproject.org/downloads): Version GNU de DMD, pour la compilation croisée dont ARM
+    </section>
+</section>
+                
+<section>
     <section>
         <h1>Qu'est ce que c'est?</h1>
         <img src="img/what.svg" class="raw stretch"/>
@@ -108,6 +126,24 @@
             - Locks / message passing
             - static (TLS) / __gshared
         - Interfaçage avec C &amp; C++
+    </section>
+    <section data-markdown>
+        ## Avantages
+        - Polyvalent
+        - Pour des applications de toutes tailles
+        - Compilé
+        - Système (OS, sys embarqué, ...)
+        - Orienté qualité
+        - Très puissant grâce au meta programming
+        - Syntaxe simple/connue
+        - Librairie standard assez complète
+    </section>
+    <section data-markdown>
+        ## Inconvénients
+        - Peu de librairies disponibles
+        - Beaucoup de librairies sont des portages de lib C, peu pratiques à utiliser
+        - Pas encore assez d'utilisateurs, même si ça tend à augmenter
+        - Vous ne le connaissez pas...
     </section>
 </section>
 
@@ -503,7 +539,7 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
                 
 <section>
     <section>
-        <h1>Tests Unitaires</h1>
+        <h1>Tests qualité</h1>
         <img src="img/unittest.svg" class="raw stretch"/>
     </section>
     <section data-markdown>
@@ -522,7 +558,22 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
             //...
         }
         ```
-        Peut 
+        - Ces blocs s'éxécutent avant le main
+        - Peut contenir des classes, fonctions, n'importe quoi...
+        
+        -----
+        
+        ###### Console
+        ```bash
+        dmd -unittest main.d
+        ./main
+        ```
+        - Execute les tests unitaires puis le programme
+    </section>
+    <section data-markdown>
+        ## Prog. par contrat
+        - On définit les contraintes de la fonction (avant de l'écrire)
+        - Lors des tests
     </section>
     <section data-markdown>
         ## Coverage
@@ -543,6 +594,14 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
     <!--TODO-->
     <section data-markdown>
         # Map / Reduce
+        #### On dit adieu aux boucles !
+    </section>
+    <section data-markdown>
+        - Fonctionnalitée présente dans de nombreux langages fonctionnels
+        - cf [Introduction au Big Data de Pierre Zemb](http://slides.pierrezemb.fr/big-data-isen/#/)
+    </section>
+    <section data-markdown>
+        
     </section>
 </section>
     
