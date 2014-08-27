@@ -570,11 +570,6 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         - Execute les tests unitaires puis le programme
     </section>
     <section data-markdown>
-        ## Prog. par contrat
-        - On définit les contraintes de la fonction (avant de l'écrire)
-        - Lors des tests
-    </section>
-    <section data-markdown>
         ## Coverage
         
         - Permet d'évaluer si les tests unitaires ont été bien écrits
@@ -585,6 +580,28 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         dmd -cov main.d
         ./main
         cat main.lst
+        ```
+    </section>
+    <section data-markdown>
+        ## Prog. par contrat
+        - On définit les contraintes de la fonction (avant de l'écrire)
+            - Entrées, avant l'éxécution de la fonction
+            - Sorties, après l'éxécution de la fonction
+        - On définit la validité d'un objet
+            - A chaque modification de l'objet, on le vérifie
+        - L'option -release permet de désactiver ces tests
+        
+        ```d
+        int function()
+        in{
+            //Entrée, permet de vérif. les args
+        }
+        out(value){
+            //Sortie, permet de vérif que l'entier retourné (value) est cohérent
+        }
+        body{
+            //Définition de la fonction
+        }
         ```
     </section>
 </section>
