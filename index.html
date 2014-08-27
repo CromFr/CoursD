@@ -341,9 +341,158 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         ```
         </div>
     </section>
+    <section data-markdown>
+        ## Universal Function Call Syntax (UFCS)
+        Peut paraître sale au premier abord, mais super pratique !
+        ```d
+        function(arg0, arg1);
+        arg0.function(arg1);//même chose
+        
+        function2(arg0);
+        arg0.function2();//même chose
+        arg0.function2;//même chose
 
+        ```
+        Permet d'éviter les "friend" quand ont veut étendre des fonctionnalités déja implémentées:
+        ```d
+        string randomizeCase(in string s){...}
+        someString.randomizeCase();
+        ```
+        Permet d'enchaîner plein de trucs:
+        ```d
+        "Hello Gay World".strip.randomizeCase.rainbowString.center(80,"~")
+        ```
+        
+    </section>
+    <section data-markdown>
+        ## UFCS - Class Properties
+        C++
+        ```cpp
+        class Yolo{//Solution 1, verbeuse
+        public:
+            GetName(){return m_name;}
+            SetName(string name){m_name = name;}
+        private:
+            string m_name;
+        };
+        yoloInstance.GetName();
+        yoloInstance.SetName("toto");
+        
+        class Yolo{//Solution 2, pose des limites
+        public:
+            string name;
+        };
+        yoloInstance.name;
+        yoloInstance.name = "toto";
+        ```
+        ```cpp
+        //Problème
+        class Yolo{
+        public:
+            string name;
+            int GetAge(){return aujourdhui - m_datenaissance;}
+        private:
+            //...
+        };
+        //deux getters, deux syntaxes différentes
+        yoloInstance.name;
+        yoloInstance.GetAge();
+        ```
+    </section>
+    <section data-markdown>
+        ## UFCS - Class Properties
+        D
+        ```d
+        class Yolo{
+        public:
+            string name;
+            @property int age(){return aujourdhui - m_datenaissance;}
+        private:
+            //...
+        }
+        //Même syntaxe
+        yoloInstance.name;
+        yoloInstance.age;
+        ```
+    </section>
+    <section>
+        <div data-markdown>
+        ## Encapsulation
+        En D, on peut encapsuler n'importe qui n'importe où !
+        
+        ```d
+        class A{
+          import std.stdio;
+          void fun(){
+            import std.stream;
+            class Handy{
+              struct yolo{
+               //...
+              }
+            }
+            
+            void wtf(int arf){
+              //...
+            }
+          }
+        }
+        ```
+        </div>
+    </section>
+    
+    <section data-markdown>
+        # Be lazy !
+        ```d
+        
+        ```
+    </section>
 
-
+</section>
+                
+                
+<section>
+    <section>
+        <h1>Tests Unitaires</h1>
+        <img src="img/unittest.svg" class="raw stretch"/>
+    </section>
+    <section data-markdown>
+        ## En bref...
+        
+        - Automatiser des tests du programme
+        - Valider le bon fonctionnement du programme
+        - Limite la casse quand refactoring
+    </section>
+    <section data-markdown>
+        ## unittest{ }
+        ```d
+        unittest{
+            assert((1==2) == false, "Gros problème avec les booléens");
+            assert((5+3)==8, "Gros problème avec les additions");
+            //...
+        }
+        ```
+        Peut 
+    </section>
+    <section data-markdown>
+        ## Coverage
+        
+        - Permet d'évaluer si les tests unitaires ont été bien écrits
+        - Indique combien de fois ont été éxécutées chaque ligne du programme
+        - Renvoi un pourcentage entre lignes éxécutées/non éxécutées
+        
+        ```bash
+        dmd -cov main.d
+        ./main
+        cat main.lst
+        ```
+    </section>
+</section>
+                
+<section>
+    <!--TODO-->
+    <section data-markdown>
+        # Map / Reduce
+    </section>
 </section>
     
     
