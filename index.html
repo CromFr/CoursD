@@ -65,7 +65,7 @@
         <img src="img/what.svg" class="raw stretch"/>
     </section>
     <section data-markdown>
-        ## C'est comme du C++
+        ## ''It's like C++''
         - Compilation vers code natif
         - Pointeurs
         - Templates
@@ -76,7 +76,7 @@
             - Avec l'opérateur ^^
     </section>
     <section data-markdown>
-        ## C'est comme du Java/ C♯
+        ## ''It's also like Java and C♯''
         - Pas de pointeurs
         - Garbage collector
         - Héritage simple, Interfaces
@@ -87,7 +87,7 @@
         - Réflexion
     </section>
     <section data-markdown>
-        ## C'est comme du Python
+        ## ''There's also things from Python''
         - Modules
         - Packages
         - Nested functions
@@ -342,6 +342,57 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         </div>
     </section>
     <section data-markdown>
+        ## Classes
+        ```d
+        class Foo : ClassA, IfaceA, IfaceB{
+        public:
+            this(){super();}//Ctor
+            ~this(){}//Dtor
+            
+            void function(){}
+            string member;
+        }
+        auto f = new Foo();
+        ```
+        - Chaque spécificateur peut être écrit de plusieurs façons suivant sa portée:
+        ```d
+        private property void function();//Unique (java)
+        private{ property{ void function(); } }//Accolades
+        private property: void function();//Jusqu'au prochain (C++)
+        ```
+        - et peuvent être mixés a volonté
+        
+        ```d
+        private:
+          property{
+            void function();
+          }
+        ```
+    </section>
+    <section>
+        <div data-markdown>
+            ## Spécificateurs
+            [http://dlang.org/attribute.html](http://dlang.org/attribute.html)
+        </div>
+        <div align=center data-markdown>
+        |---Nom---|-------Utilité-------|
+        |:---|:----|
+        |public|Visibilité totale|
+        |private|Visibilité dans la classe|
+        |protected|Visibilité dans la classe et les filles|
+        |package|Visibilité dans le package D|
+        |abstract|Réécriture obligatoire, pas d'instance|
+        |override|Ecrase la fonction mère|
+        |synchronized|Un seul accès à la fois (multiphreading)|
+        |static|Accessible sans instance de classe|
+        |__gshared|Partagé entre tous les threads|
+        |@safe/trusted/system|Suivant si des segfaults sont envisageable|
+        |@nothrow|Suivant si des segfaults sont envisageable|
+        |@pure|Ne dépends que de ses args (Maths)|
+        |@creez_le_votre|[Regarder ici](http://dlang.org/attribute.html#UserDefinedAttribute)|
+        </div>
+    </section>
+    <section data-markdown>
         ## Universal Function Call Syntax (UFCS)
         Peut paraître sale au premier abord, mais super pratique !
         ```d
@@ -365,7 +416,7 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         
     </section>
     <section data-markdown>
-        ## UFCS - Class Properties
+        ## UFCS - @property
         C++
         ```cpp
         class Yolo{//Solution 1, verbeuse
@@ -400,7 +451,7 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         ```
     </section>
     <section data-markdown>
-        ## UFCS - Class Properties
+        ## UFCS - @property
         D
         ```d
         class Yolo{
