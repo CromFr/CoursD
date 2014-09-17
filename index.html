@@ -466,7 +466,8 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         ```
         
     </section>
-    <section data-markdown>
+    <section>
+        <div data-markdown>
         ## UFCS - @property
         C++
         ```cpp
@@ -487,6 +488,8 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         yoloInstance.name;
         yoloInstance.name = "toto";
         ```
+        </div>
+        <div class="fragment zoom-in" data-markdown>
         ```cpp
         //Problème
         class Yolo{
@@ -500,6 +503,7 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         yoloInstance.name;
         yoloInstance.GetAge();
         ```
+        </div>
     </section>
     <section data-markdown>
         ## UFCS - @property
@@ -544,11 +548,14 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
     <section data-markdown>
         # Templates
         On verra ça mieux plus tard !
+        
+        C++
         ```cpp
         //something&lt;sometemplate&gt;
         vector&lt;int&gt; var;
         vector&lt;vector&lt;int&gt &gt; var;
         ```
+        D
         ```d
         //something!sometemplate;
         to!string(12);
