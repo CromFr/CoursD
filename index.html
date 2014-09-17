@@ -91,7 +91,6 @@
             - CTFE
         - Rapide
         - Surcharge d'opérateurs
-            - Avec l'opérateur ^^
     </section>
     <section data-markdown>
         ## ''It's also like Java and C♯''
@@ -144,6 +143,14 @@
         - Beaucoup de librairies sont des portages de lib C, peu pratiques à utiliser
         - Pas encore assez d'utilisateurs, même si ça tend à augmenter
         - Vous ne le connaissez pas...
+    </section>
+    <section data-markdown>
+        ## Projets
+        - [OpenAGS](https://github.com/CromFr/OpenAGS): Selecteur de jeux de la borne d'arcade (SFML)
+        - [LcdaUpdater](https://github.com/CromFr/LcdaUpdater): Remplacement d'un script bash trop lent
+        - [Dengine](https://github.com/CromFr/Dengine): Moteur 3D OpenGL3.3 (Derelict)
+        - [Tempest-IA](https://github.com/ISEN-TempestProject/Tempest-Intelligence): Navigation intelligente pour voilier autonome &amp; interface de débogage web (GDC, Vibe)
+        - [DPlugin](https://github.com/CromFr/DPlugin): Système de plugin pré-compilé
     </section>
 </section>
 
@@ -359,21 +366,29 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         ## Tableaux
         C++
         ```cpp
-        auto var = "12" + 5 + 2;//var = ?
+        auto var1 = "12" + 5 + 2;//var1 = ?
+        auto var2 = "12" + 5 + '2';//var2 = ?
             
         int tab[5] = {0,1,2,3,4};
-        auto var2 = tab + 6;//var2 = ?
+        auto var3 = tab + 6;//var3 = ?
         ```
+        </div>
+        <div class="fragment zoom-in" data-markdown>
+        - var1: Pointeur sur char, dans une case mémoire interdite
+        - var2: Pointeur sur char, vaut ')��� '
+        - var3: Pointeur sur int dans une case mémoire interdite
         </div>
         <div class="fragment zoom-in" data-markdown>
         D
         ```d
-        auto var = "12" + 5 + 2;//Compilation error
+        auto var1 = "12" + 5 + 2;//Compilation error
+            //incompatible types for (("12") + (5)): 'string' and 'int'
         auto var2 = "12" ~ 5 ~ 2;// OK : Concaténation de string~char~char
             
-        int tab[5] = {0,1,2,3,4};
-        auto var2 = tab + 6;//Compilation error
-        auto var2 = tab[] + 6;//OK : ajout de 6 à chaque élément
+        int tab[] = [0,1,2,3,4];
+        auto var3 = tab + 6;//Compilation error
+            //incompatible types for ((tab) + (6)): 'int[]' and 'int'
+        auto var4 = tab[] ~ 6;//OK : Ajoute 6 à la fin du tableau
         ```
         </div>
     </section>
@@ -451,7 +466,8 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         ```
         
     </section>
-    <section data-markdown>
+    <section>
+        <div data-markdown>
         ## UFCS - @property
         C++
         ```cpp
@@ -472,6 +488,8 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         yoloInstance.name;
         yoloInstance.name = "toto";
         ```
+        </div>
+        <div class="fragment zoom-in" data-markdown>
         ```cpp
         //Problème
         class Yolo{
@@ -485,6 +503,7 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         yoloInstance.name;
         yoloInstance.GetAge();
         ```
+        </div>
     </section>
     <section data-markdown>
         ## UFCS - @property
@@ -525,6 +544,23 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         }
         ```
         </div>
+    </section>
+    <section data-markdown>
+        # Templates
+        On verra ça mieux plus tard !
+        
+        C++
+        ```cpp
+        //something&lt;sometemplate&gt;
+        vector&lt;int&gt; var;
+        vector&lt;vector&lt;int&gt &gt; var;
+        ```
+        D
+        ```d
+        //something!sometemplate;
+        to!string(12);
+        Tuple!(int, string)(42, "La réponse");
+        ```
     </section>
     
     <section data-markdown>
@@ -571,11 +607,6 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         - Execute les tests unitaires puis le programme
     </section>
     <section data-markdown>
-        ## Prog. par contrat
-        - On définit les contraintes de la fonction (avant de l'écrire)
-        - Lors des tests
-    </section>
-    <section data-markdown>
         ## Coverage
         
         - Permet d'évaluer si les tests unitaires ont été bien écrits
@@ -586,6 +617,28 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         dmd -cov main.d
         ./main
         cat main.lst
+        ```
+    </section>
+    <section data-markdown>
+        ## Prog. par contrat
+        - On définit les contraintes de la fonction (avant de l'écrire)
+            - Entrées, avant l'éxécution de la fonction
+            - Sorties, après l'éxécution de la fonction
+        - On définit la validité d'un objet
+            - A chaque modification de l'objet, on le vérifie
+        - L'option -release permet de désactiver ces tests
+        
+        ```d
+        int function()
+        in{
+            //Entrée, permet de vérif. les args
+        }
+        out(value){
+            //Sortie, permet de vérif que l'entier retourné (value) est cohérent
+        }
+        body{
+            //Définition de la fonction
+        }
         ```
     </section>
 </section>
@@ -603,6 +656,13 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
     <section data-markdown>
         
     </section>
+</section>
+
+<section>
+    <section data-markdown>
+        # Templates
+        http://nomad.so/2013/07/templates-in-d-explained/
+    </section> 
 </section>
     
     
