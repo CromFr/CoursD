@@ -560,7 +560,7 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         ```cpp
         //something&lt;sometemplate&gt;
         vector&lt;int&gt; var;
-        vector&lt;vector&lt;int&gt &gt; var;
+        vector&lt;vector&lt;int&gt; &gt; var;
         ```
         D
         ```d
@@ -662,8 +662,75 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
         - cf [Introduction au Big Data de Pierre Zemb](http://slides.pierrezemb.fr/big-data-isen/#/)
     </section>
     <section data-markdown>
+        ## Exemple Map
+        #### Convertir une chaîne de caractères en 1337 5P34K:
         
+        - "Leet is so dificult to write !"
+        - Devient "1337\_IS\_SO\_D1F1CU17\_TO\_WR173\_!"
+        
+        ---
+        #### Règles
+        - Passage en majuscules
+        - Les mots de moins de 2 lettres sont conservés
+        - Les autres sont convertis char par char (A=>4, I=>1, ...)
+        - Les espaces sont comblés par des "_"
     </section>
+<section data-markdown>
+## Solution avec boucles
+```d
+  string ret;
+  string[] words = s.toUpper.split(' ');
+  foreach(index, string word ; words){
+    if(word.length&lt;=2)
+      ret ~= word;
+    else{
+      foreach(dchar c ; word){
+        switch(c){
+          case 'A': ret~='4'; break;
+          case 'O': ret~='0'; break;
+          case 'T': ret~='7'; break;
+          case 'E': ret~='3'; break;
+          case 'I': ret~='1'; break;
+          default:  ret~=c; break;
+        }
+      }
+    }
+    if(index&lt;words.length-1)
+      ret ~= "_";
+  }
+  return ret;
+```
+</section>
+<section data-markdown>
+## Solution avec map
+### (Pipeline Programming)
+```d
+  return s.toUpper
+      .splitter(' ')
+      .map!(function(string word){
+        if(word.length&lt;=2)
+          return word;
+        return word.map!(function(dchar c){
+          switch(c){
+            case 'A': return '4';
+            case 'O': return '0';
+            case 'T': return '7';
+            case 'E': return '3';
+            case 'I','L': return '1'; break;
+            default:  return c;
+          }
+        }).to!string;
+      })
+      .join("_");
+```
+</section>
+<section data-markdown>
+## Avantages
+- Multithreading facile: `std.parallelism:amap`
+- Laisser les fonctions optimisées travailler à notre place
+- Moins d'allocations mémoire (passage des vars en interne)
+</section>
+    
 </section>
 
 <section>
