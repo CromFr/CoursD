@@ -42,148 +42,165 @@
 			<div class="slides">
                 
                 
-                
+            
+<!-- ============================================================================ -->    
 <section>
     <h1>Le Langage <img src="img/dlang.png" class="dlogo raw"/></h1>
     <h3>Thomas ABOT - Thibaut CHARLES</h3>
 </section>
+<!-- ============================================================================ -->
+<section data-markdown>
+# Sommaire
+
+- Qu'est ce que c'est?
+- Syntaxe
+- ...
+- Tests unitaires &amp; prog par contrat
+- Templates
+- Surcharge d'opérateurs
+</section>
+<!-- ============================================================================ -->
+<section>
+<section data-markdown>
+# Prérequis
+- Connaissance du C++ ou Java
+- DMD installé, prêt à l'emploi
+  - Debian/Ubuntu: sudo apt-get install dmd
+  - ArchLinux: sudo pacman -S dmd (choisir libphobos)
+  - Windows: [Installez ça](http://downloads.dlang.org/releases/2014/dmd-2.066.0.exe), et changez le PATH pour inclure le dossier contenant dmd.exe
+</section>
 
 <section data-markdown>
-    # Sommaire
-
-    - Qu'est ce que c'est?
-    - Syntaxe
-    - ...
-    - Tests unitaires &amp; prog par contrat
-    - Templates
-    - Surcharge d'opérateurs
+## Liens utiles
+- [dub](https://github.com/D-Programming-Language/dub): gestionnaire de projets qui s'occupe des librairies
+- [Sublime Text](http://www.sublimetext.com/3) avec le plugin [DKit](https://github.com/yazd/DKit) et [DCD](https://github.com/Hackerpilot/DCD): Auto-completion
+- [GDC](http://gdcproject.org/downloads): Version GNU de DMD, pour la compilation croisée dont ARM
 </section>
-
-<section>
-    <section data-markdown>
-        # Prérequis
-        - Connaissance du C++ ou Java
-        - DMD installé, prêt à l'emploi
-          - Debian/Ubuntu: sudo apt-get install dmd
-          - ArchLinux: sudo pacman -S dmd (choisir libphobos)
-          - Windows: [Installez ça](http://downloads.dlang.org/releases/2014/dmd-2.066.0.exe), et changez le PATH pour inclure le dossier contenant dmd.exe
-    </section>
-
-    <section data-markdown>
-        ## Liens utiles
-        - [dub](https://github.com/D-Programming-Language/dub): gestionnaire de projets qui s'occupe des librairies
-        - [Sublime Text](http://www.sublimetext.com/3) avec le plugin [DKit](https://github.com/yazd/DKit) et [DCD](https://github.com/Hackerpilot/DCD): Auto-completion
-        - [GDC](http://gdcproject.org/downloads): Version GNU de DMD, pour la compilation croisée dont ARM
-    </section>
 </section>
-                
+<!-- ============================================================================ -->        
 <section>
-    <section>
-        <h1>Qu'est ce que c'est?</h1>
-        <img src="img/what.svg" class="raw stretch"/>
-    </section>
-    <section data-markdown>
-        ## ''It's like C++''
-        - Compilation vers code natif
-        - Pointeurs
-        - Templates
-            - Plus simple et flexibles
-            - CTFE
-        - Rapide
-        - Surcharge d'opérateurs
-    </section>
-    <section data-markdown>
-        ## ''It's also like Java and C♯''
-        - Pas de pointeurs
-        - Garbage collector
-        - Héritage simple, Interfaces
-        - Nested classes
-        - Delegates
-        - Reference / value types
-        - Properties
-        - Réflexion
-    </section>
-    <section data-markdown>
-        ## ''There's also things from Python''
-        - Modules
-        - Packages
-        - Nested functions
-        - Anonymous functions
-        - Lazy evaluation
-        - Functionnal Programming
-    </section>
-    <section data-markdown>
-        ## ''D is for real programmers''
-
-        - Qualité
-            - UnitTests
-            - Contract programming
-            - @safe / @trusted / @system
-            - @nothrow, @pure
-            - debug/release builds
-        - Programmation asynchrone
-            - Locks / message passing
-            - static (TLS) / __gshared
-        - Interfaçage avec C &amp; C++
-    </section>
-    <section data-markdown>
-        ## Avantages
-        - Polyvalent
-        - Pour des applications de toutes tailles
-        - Compilé
-        - Système (OS, sys embarqué, ...)
-        - Orienté qualité
-        - Très puissant grâce au meta programming
-        - Syntaxe simple/connue
-        - Librairie standard assez complète
-    </section>
-    <section data-markdown>
-        ## Inconvénients
-        - Peu de librairies disponibles
-        - Beaucoup de librairies sont des portages de lib C, peu pratiques à utiliser
-        - Pas encore assez d'utilisateurs, même si ça tend à augmenter
-        - Vous ne le connaissez pas...
-    </section>
-    <section data-markdown>
-        ## Projets
-        - [OpenAGS](https://github.com/CromFr/OpenAGS): Selecteur de jeux de la borne d'arcade (SFML)
-        - [LcdaUpdater](https://github.com/CromFr/LcdaUpdater): Remplacement d'un script bash trop lent
-        - [Dengine](https://github.com/CromFr/Dengine): Moteur 3D OpenGL3.3 (Derelict)
-        - [Tempest-IA](https://github.com/ISEN-TempestProject/Tempest-Intelligence): Navigation intelligente pour voilier autonome &amp; interface de débogage web (GDC, Vibe)
-        - [DPlugin](https://github.com/CromFr/DPlugin): Système de plugin pré-compilé
-    </section>
+<section>
+    <h1>Qu'est ce que c'est?</h1>
+    <img src="img/what.svg" class="raw stretch"/>
 </section>
+    
+<section data-markdown>
+## ''It's like C++''
+- Compilation vers code natif
+- Pointeurs
+- Templates
+    - Plus simple et flexibles
+    - CTFE
+- Rapide
+- Surcharge d'opérateurs
+</section>
+    
+<section data-markdown>
+## ''It's also like Java and C♯''
+- Pas de pointeurs
+- Garbage collector
+- Héritage simple, Interfaces
+- Nested classes
+- Delegates
+- Reference / value types
+- Properties
+- Réflexion
+</section>
+    
+<section data-markdown>
+## ''There's also things from Python''
+- Modules
+- Packages
+- Nested functions
+- Anonymous functions
+- Lazy evaluation
+- Functionnal Programming
+</section>
+    
+<section data-markdown>
+## ''D is for real programmers''
 
+- Qualité
+    - UnitTests
+    - Contract programming
+    - @safe / @trusted / @system
+    - @nothrow, @pure
+    - debug/release builds
+- Programmation asynchrone
+    - Locks / message passing
+    - static (TLS) / __gshared
+- Interfaçage avec C &amp; C++
+</section>
+    
+<section data-markdown>
+## Avantages
+- Polyvalent
+- Pour des applications de toutes tailles
+- Compilé
+- Système (OS, sys embarqué, ...)
+- Orienté qualité
+- Très puissant grâce au meta programming
+- Syntaxe simple/connue
+- Librairie standard assez complète
+</section>
+    
+<section data-markdown>
+## Inconvénients
+- Peu de librairies disponibles
+- Beaucoup de librairies sont des portages de lib C, peu pratiques à utiliser
+- Pas encore assez d'utilisateurs, même si ça tend à augmenter
+- Vous ne le connaissez pas...
+</section>
+    
+<section data-markdown>
+## Utilisations
+- A tout niveaux: Hardware => Software
+- Sur toutes les plateformes: Win, Linux, UNIX, ARM, ...
+- Alternative à MATLAB?
+- TODO: rajouter des trucs
+</section>
+    
+<section data-markdown>
+## Projets
+- [OpenAGS](https://github.com/CromFr/OpenAGS): Selecteur de jeux de la borne d'arcade (SFML)
+- [LcdaUpdater](https://github.com/CromFr/LcdaUpdater): Remplacement d'un script bash trop lent
+- [Dengine](https://github.com/CromFr/Dengine): Moteur 3D OpenGL3.3 (Derelict)
+- [Tempest-AI](https://github.com/ISEN-TempestProject/Tempest-Intelligence): Navigation intelligente pour voilier autonome &amp; interface de débogage web (GDC, Vibe)
+- [DPlugin](https://github.com/CromFr/DPlugin): Système de plugin pré-compilé
+</section>
+</section>
+<!-- ============================================================================ -->
 <section>
-    <section>
-        <h1>Syntaxe</h1>
-        <img src="img/syntax.svg" class="raw stretch"/>
-    </section>
-    <section data-markdown>
-        ## Un peu de troll !
-        
-        ```d
-        // 12 lignes de beau code D
-        Vect3D!T opBinary(string op, O)(in O other){
-          static if(__traits(isArithmetic, O))
-            return Vect3D!T(
-              mixin("x"~op~"other"), 
-              mixin("y"~op~"other"), 
-              mixin("z"~op~"other"));
-         else static if(is(O : Vect3D!T)
-            return Vect3D!T(
-              mixin("x"~op~"other.x"), 
-              mixin("y"~op~"other.y"), 
-              mixin("z"~op~"other.z"));
-        }
-        ```
-        Surcharge tous les opérateurs binaires (+, -, *, /)
-        
-        Vect3D op Vect3D ainsi que Vect3D op nombre
-    </section>
-    <section data-markdown>
-        ## La même chose en C++
+<section>
+    <h1>Syntaxe</h1>
+    <img src="img/syntax.svg" class="raw stretch"/>
+</section>
+    
+<section data-markdown>
+## Un peu de troll !
 
+```d
+// 12 lignes de beau code D
+Vect3D!T opBinary(string op, O)(in O other){
+  static if(__traits(isArithmetic, O))
+    return Vect3D!T(
+      mixin("x"~op~"other"), 
+      mixin("y"~op~"other"), 
+      mixin("z"~op~"other"));
+ else static if(is(O : Vect3D!T)
+    return Vect3D!T(
+      mixin("x"~op~"other.x"), 
+      mixin("y"~op~"other.y"), 
+      mixin("z"~op~"other.z"));
+}
+```
+Surcharge tous les opérateurs binaires (+, -, *, /)
+
+Vect3D op Vect3D ainsi que Vect3D op nombre
+</section>
+    
+<section data-markdown>
+## La même chose en C++
 ```cpp
 // Beurk!
 Vect3D&lt;T&gt; operator+(const Vect3D&lt;T&gt;&amp; other){
@@ -235,435 +252,531 @@ Vect3D&lt;T&gt; operator/(const float&amp; other){
       z/other);
 }
 ```
-        Notez la scrollbar !
+Notez la scrollbar !
 
-        - 24 lignes de code C++, 24 en plus par type arithmétique
-        - Pour gérer tous les types arithmétiques (sans conv implicite) 
-            - +300 lignes
-    </section>
-    <section data-markdown>
-        ## Pour faire court...
-        - Ca ressemble à du Java
-        - Générique / polyvalente
-        - Pas trop verbeuse (il y a mieux)
-        - Méchament puissante
-    </section>
-    <section data-markdown>
-        # Passons aux choses sérieuses !
-    </section>
-    <section>
-        <div data-markdown>
-        ## Hello world!
-        ```d
-        import std.stdio;
-
-        void main(){
-            writeln("Hello, World!");
-        }
-        ```
-        </div><br/>
-        <div class="fragment zoom-in" data-markdown>
-        ###### Console
-        ```bash
-        % dmd main.d
-        % ./main
-        Hello, World !
-        ```
-        </div>
-    </section>
-    <section>
-        <div data-markdown>
-        ## Hello you !
-        ```d
-        import std.stdio;
-
-        void main(){
-            string name = "students";
-            writeln("Hello ",name,"!");
-        }
-        ```
-        Ca vous rapelle de bons souvenirs?
-        </div><br/>
-        <div class="fragment zoom-in" data-markdown>
-        ###### Console
-        ```bash
-        % dmd main.d
-        % ./main
-        Hello students!
-        ```
-        </div>
-    </section>
-    <section>
-        <h2>Types de variables</h2>
-        <a href="http://dlang.org/type.html">dlang.org/type.html</a>
-        <div align=center data-markdown>
-        |---Nom---|--Init--|-Bits-|-------Type-------|
-        |:---|:----:|:----:|:----|
-        |void|?|8|Sans type|
-        |**bool**|false|1/8|Booléen|
-        |byte|0|8|Entier signé|
-        |ubyte|0|8|Entier positif/nul|
-        |short|0|16|Entier signé|
-        |ushort|0|16|Entier positif/nul|
-        |**int**|0|32|Entier signé|
-        |long|0|64|Entier signé|
-        |**float**|nan|32|Flotant|
-        |**double**|nan|64|Flotant|
-        |real|nan|max|Flotant|
-        |cfloat|nan|64|Flotant complexe|
-        |char|0xFF|8|Caractère|
-        |**string**|""|?|Chaîne de caractères|
-        </div>
-    </section>
-    <section>
-        <h2>Propriétés des types</h2>
-        <a href="http://dlang.org/property.html">dlang.org/property.html</a>
-        <div align=center data-markdown>
-        |---Nom---|-------Utilité-------|
-        |:---|:----|
-        |.min|Valeur Min|
-        |.max|Valeur Max|
-        |.init|Valeur d'initialisation|
-        |.stringof|Nom|
-        |---|---|
-        |.epsilon|Plus petite valeur possible|
-        |.dig|Nombre max de décimales|
-        |.re|Partie réelle|
-        |.im|Partie imaginaire|
-        |---|---|
-        |.classinfo|[Informations sur le type de la variable](http://dlang.org/phobos/object.html#TypeInfo_Class)|
-        </div>
-    </section>
-
-    <section>
-        <div data-markdown>
-        ## Tableaux &amp; foreach
-        ```d
-        import std.stdio;
-
-        void main(){
-           string names[] = ["Bryan", "Brendan", "Florentin"];
-           foreach(name ; names){
-               writeln("Hello ",name,"!");
-           }
-        }
-        ```
-        </div><br/>
-        <div class="fragment zoom-in" data-markdown>
-        ###### Console
-        ```bash
-        % dmd main.d
-        % ./main
-        Hello Bryan!
-        Hello Brendan!
-        Hello Florentin!
-        ```
-        </div>
-    </section>
-
-    <section>
-        <div data-markdown>
-        ## Tableaux
-        C++
-        ```cpp
-        auto var1 = "12" + 5 + 2;//var1 = ?
-        auto var2 = "12" + 5 + '2';//var2 = ?
-            
-        int tab[5] = {0,1,2,3,4};
-        auto var3 = tab + 6;//var3 = ?
-        ```
-        </div>
-        <div class="fragment zoom-in" data-markdown>
-        - var1: Pointeur sur char, dans une case mémoire interdite
-        - var2: Pointeur sur char, vaut ')��� '
-        - var3: Pointeur sur int dans une case mémoire interdite
-        </div>
-        <div class="fragment zoom-in" data-markdown>
-        D
-        ```d
-        auto var1 = "12" + 5 + 2;//Compilation error
-            //incompatible types for (("12") + (5)): 'string' and 'int'
-        auto var2 = "12" ~ 5 ~ 2;// OK : Concaténation de string~char~char
-            
-        int tab[] = [0,1,2,3,4];
-        auto var3 = tab + 6;//Compilation error
-            //incompatible types for ((tab) + (6)): 'int[]' and 'int'
-        auto var4 = tab[] ~ 6;//OK : Ajoute 6 à la fin du tableau
-        ```
-        </div>
-    </section>
-    <section data-markdown>
-        ## Classes
-        ```d
-        class Foo : ClassA, IfaceA, IfaceB{
-        public:
-            this(){super();}//Ctor
-            ~this(){}//Dtor
-            
-            void function(){}
-            string member;
-        }
-        auto f = new Foo();
-        ```
-        - Chaque spécificateur peut être écrit de plusieurs façons suivant sa portée:
-        ```d
-        private property void function();//Unique (java)
-        private{ property{ void function(); } }//Accolades
-        private property: void function();//Jusqu'au prochain (C++)
-        ```
-        - et peuvent être mixés a volonté
-        
-        ```d
-        private:
-          property{
-            void function();
-          }
-        ```
-    </section>
-    <section>
-        <div data-markdown>
-            ## Spécificateurs
-            [http://dlang.org/attribute.html](http://dlang.org/attribute.html)
-        </div>
-        <div align=center data-markdown>
-        |---Nom---|-------Utilité-------|
-        |:---|:----|
-        |public|Visibilité totale|
-        |private|Visibilité dans la classe|
-        |protected|Visibilité dans la classe et les filles|
-        |package|Visibilité dans le package D|
-        |abstract|Réécriture obligatoire, pas d'instance|
-        |override|Ecrase la fonction mère|
-        |synchronized|Un seul accès à la fois (multiphreading)|
-        |static|Accessible sans instance de classe|
-        |__gshared|Partagé entre tous les threads|
-        |@safe/trusted/system|Suivant si des segfaults sont envisageable|
-        |@nothrow|Suivant si des segfaults sont envisageable|
-        |@pure|Ne dépends que de ses args (Maths)|
-        |@creez_le_votre|[Regarder ici](http://dlang.org/attribute.html#UserDefinedAttribute)|
-        </div>
-    </section>
-    <section data-markdown>
-        ## Universal Function Call Syntax (UFCS)
-        Peut paraître sale au premier abord, mais super pratique !
-        ```d
-        function(arg0, arg1);
-        arg0.function(arg1);//même chose
-        
-        function2(arg0);
-        arg0.function2();//même chose
-        arg0.function2;//même chose
-
-        ```
-        Permet d'éviter les "friend" quand ont veut étendre des fonctionnalités déja implémentées:
-        ```d
-        string randomizeCase(in string s){...}
-        someString.randomizeCase();
-        ```
-        Permet d'enchaîner plein de trucs:
-        ```d
-        "Hello Gay World".strip.randomizeCase.rainbowString.center(80,"~")
-        ```
-        
-    </section>
-    <section>
-        <div data-markdown>
-        ## UFCS - @property
-        C++
-        ```cpp
-        class Yolo{//Solution 1, verbeuse
-        public:
-            GetName(){return m_name;}
-            SetName(string name){m_name = name;}
-        private:
-            string m_name;
-        };
-        yoloInstance.GetName();
-        yoloInstance.SetName("toto");
-        
-        class Yolo{//Solution 2, pose des limites
-        public:
-            string name;
-        };
-        yoloInstance.name;
-        yoloInstance.name = "toto";
-        ```
-        </div>
-        <div class="fragment zoom-in" data-markdown>
-        ```cpp
-        //Problème
-        class Yolo{
-        public:
-            string name;
-            int GetAge(){return aujourdhui - m_datenaissance;}
-        private:
-            //...
-        };
-        //deux getters, deux syntaxes différentes
-        yoloInstance.name;
-        yoloInstance.GetAge();
-        ```
-        </div>
-    </section>
-    <section data-markdown>
-        ## UFCS - @property
-        D
-        ```d
-        class Yolo{
-        public:
-            string name;
-            @property int age(){return aujourdhui - m_datenaissance;}
-        private:
-            //...
-        }
-        //Même syntaxe
-        yoloInstance.name;
-        yoloInstance.age;
-        ```
-    </section>
-    <section>
-        <div data-markdown>
-        ## Encapsulation
-        En D, on peut encapsuler n'importe qui n'importe où !
-        
-        ```d
-        class A{
-          import std.stdio;
-          void fun(){
-            import std.stream;
-            class Handy{
-              struct yolo{
-               //...
-              }
-            }
-            
-            void wtf(int arf){
-              //...
-            }
-          }
-        }
-        ```
-        </div>
-    </section>
-    <section data-markdown>
-        # Templates
-        On verra ça mieux plus tard !
-        
-        C++
-        ```cpp
-        //something&lt;sometemplate&gt;
-        vector&lt;int&gt; var;
-        vector&lt;vector&lt;int&gt &gt; var;
-        ```
-        D
-        ```d
-        //something!sometemplate;
-        to!string(12);
-        Tuple!(int, string)(42, "La réponse");
-        ```
-    </section>
+- 24 lignes de code C++, 24 en plus par type arithmétique
+- Pour gérer tous les types arithmétiques (sans conv implicite) 
+    - +300 lignes
+</section>
     
-    <section data-markdown>
-        # Be lazy !
-        ```d
-        
-        ```
-    </section>
+<section data-markdown>
+## Pour faire court...
+- Ca ressemble à du Java
+- Générique / polyvalente
+- Pas trop verbeuse (il y a mieux)
+- Méchament puissante
+</section>
+    
+<section data-markdown>
+# Passons aux choses sérieuses !
+</section>
+    
+<section>
+<div data-markdown>
+## Hello world!
+```d
+import std.stdio;
 
-</section>
-                
-                
-<section>
-    <section>
-        <h1>Tests qualité</h1>
-        <img src="img/unittest.svg" class="raw stretch"/>
-    </section>
-    <section data-markdown>
-        ## En bref...
-        
-        - Automatiser des tests du programme
-        - Valider le bon fonctionnement du programme
-        - Limite la casse quand refactoring
-    </section>
-    <section data-markdown>
-        ## unittest{ }
-        ```d
-        unittest{
-            assert((1==2) == false, "Gros problème avec les booléens");
-            assert((5+3)==8, "Gros problème avec les additions");
-            //...
-        }
-        ```
-        - Ces blocs s'éxécutent avant le main
-        - Peut contenir des classes, fonctions, n'importe quoi...
-        
-        -----
-        
-        ###### Console
-        ```bash
-        dmd -unittest main.d
-        ./main
-        ```
-        - Execute les tests unitaires puis le programme
-    </section>
-    <section data-markdown>
-        ## Coverage
-        
-        - Permet d'évaluer si les tests unitaires ont été bien écrits
-        - Indique combien de fois ont été éxécutées chaque ligne du programme
-        - Renvoi un pourcentage entre lignes éxécutées/non éxécutées
-        
-        ```bash
-        dmd -cov main.d
-        ./main
-        cat main.lst
-        ```
-    </section>
-    <section data-markdown>
-        ## Prog. par contrat
-        - On définit les contraintes de la fonction (avant de l'écrire)
-            - Entrées, avant l'éxécution de la fonction
-            - Sorties, après l'éxécution de la fonction
-        - On définit la validité d'un objet
-            - A chaque modification de l'objet, on le vérifie
-        - L'option -release permet de désactiver ces tests
-        
-        ```d
-        int function()
-        in{
-            //Entrée, permet de vérif. les args
-        }
-        out(value){
-            //Sortie, permet de vérif que l'entier retourné (value) est cohérent
-        }
-        body{
-            //Définition de la fonction
-        }
-        ```
-    </section>
-</section>
-                
-<section>
-    <!--TODO-->
-    <section data-markdown>
-        # Map / Reduce
-        #### On dit adieu aux boucles !
-    </section>
-    <section data-markdown>
-        - Fonctionnalitée présente dans de nombreux langages fonctionnels
-        - cf [Introduction au Big Data de Pierre Zemb](http://slides.pierrezemb.fr/big-data-isen/#/)
-    </section>
-    <section data-markdown>
-        
-    </section>
+void main(){
+    writeln("Hello, World!");
+}
+```
+</div><br/>
+<div class="fragment zoom-in" data-markdown>
+###### Console
+```bash
+% dmd main.d
+% ./main
+Hello, World !
+```
+</div>
 </section>
 
 <section>
-    <section data-markdown>
-        # Templates
-        http://nomad.so/2013/07/templates-in-d-explained/
-    </section> 
+<div data-markdown>
+## Hello you !
+```d
+import std.stdio;
+
+void main(){
+    string name = "students";
+    writeln("Hello ",name,"!");
+}
+```
+Ca vous rapelle de bons souvenirs?
+</div><br/>
+<div class="fragment zoom-in" data-markdown>
+###### Console
+```bash
+% dmd main.d
+% ./main
+Hello students!
+```
+</div>
 </section>
+    
+<section>
+<h2>Types de variables</h2>
+<a href="http://dlang.org/type.html">dlang.org/type.html</a>
+<div align=center data-markdown>
+|---Nom---|--Init--|-Bits-|-------Type-------|
+|:---|:----:|:----:|:----|
+|void|?|8|Sans type|
+|**bool**|false|1/8|Booléen|
+|byte|0|8|Entier signé|
+|ubyte|0|8|Entier positif/nul|
+|short|0|16|Entier signé|
+|ushort|0|16|Entier positif/nul|
+|**int**|0|32|Entier signé|
+|long|0|64|Entier signé|
+|**float**|nan|32|Flotant|
+|**double**|nan|64|Flotant|
+|real|nan|max|Flotant|
+|cfloat|nan|64|Flotant complexe|
+|char|0xFF|8|Caractère|
+|**string**|""|?|Chaîne de caractères|
+</div>
+</section>
+    
+<section>
+<h2>Propriétés des types</h2>
+<a href="http://dlang.org/property.html">dlang.org/property.html</a>
+<div align=center data-markdown>
+|---Nom---|-------Utilité-------|
+|:---|:----|
+|.min|Valeur Min|
+|.max|Valeur Max|
+|.init|Valeur d'initialisation|
+|.stringof|Nom|
+|---|---|
+|.epsilon|Plus petite valeur possible|
+|.dig|Nombre max de décimales|
+|.re|Partie réelle|
+|.im|Partie imaginaire|
+|---|---|
+|.classinfo|[Informations sur le type de la variable](http://dlang.org/phobos/object.html#TypeInfo_Class)|
+</div>
+</section>
+
+<section>
+<div data-markdown>
+## Tableaux &amp; foreach
+```d
+import std.stdio;
+
+void main(){
+   string names[] = ["Bryan", "Brendan", "Florentin"];
+   foreach(name ; names){
+       writeln("Hello ",name,"!");
+   }
+}
+```
+</div><br/>
+<div class="fragment zoom-in" data-markdown>
+###### Console
+```bash
+% dmd main.d
+% ./main
+Hello Bryan!
+Hello Brendan!
+Hello Florentin!
+```
+</div>
+</section>
+
+<section>
+<div data-markdown>
+## Tableaux
+C++
+```cpp
+auto var1 = "12" + 5 + 2;//var1 = ?
+auto var2 = "12" + 5 + '2';//var2 = ?
+
+int tab[5] = {0,1,2,3,4};
+auto var3 = tab + 6;//var3 = ?
+```
+</div>
+<div class="fragment zoom-in" data-markdown>
+- var1: Pointeur sur char, dans une case mémoire interdite
+- var2: Pointeur sur char, vaut ')��� '
+- var3: Pointeur sur int dans une case mémoire interdite
+</div>
+<div class="fragment zoom-in" data-markdown>
+D
+```d
+auto var1 = "12" + 5 + 2;//Compilation error
+    //incompatible types for (("12") + (5)): 'string' and 'int'
+auto var2 = "12" ~ 5 ~ 2;// OK : Concaténation de string~char~char
+
+int tab[] = [0,1,2,3,4];
+auto var3 = tab + 6;//Compilation error
+    //incompatible types for ((tab) + (6)): 'int[]' and 'int'
+auto var4 = tab[] ~ 6;//OK : Ajoute 6 à la fin du tableau
+```
+</div>
+</section>
+    
+<section data-markdown>
+## Classes
+```d
+class Foo : ClassA, IfaceA, IfaceB{
+public:
+    this(){super();}//Ctor
+    ~this(){}//Dtor
+
+    void function(){}
+    string member;
+}
+auto f = new Foo();
+```
+- Chaque spécificateur peut être écrit de plusieurs façons suivant sa portée:
+```d
+private property void function();//Unique (java)
+private{ property{ void function(); } }//Accolades
+private property: void function();//Jusqu'au prochain (C++)
+```
+- et peuvent être mixés a volonté
+
+```d
+private:
+  property{
+    void function();
+  }
+```
+</section>
+    
+<section>
+<div data-markdown>
+    ## Spécificateurs
+    [http://dlang.org/attribute.html](http://dlang.org/attribute.html)
+</div>
+<div align=center data-markdown>
+|---Nom---|-------Utilité-------|
+|:---|:----|
+|public|Visibilité totale|
+|private|Visibilité dans la classe|
+|protected|Visibilité dans la classe et les filles|
+|package|Visibilité dans le package D|
+|abstract|Réécriture obligatoire, pas d'instance|
+|override|Ecrase la fonction mère|
+|synchronized|Un seul accès à la fois (multiphreading)|
+|static|Accessible sans instance de classe|
+|__gshared|Partagé entre tous les threads|
+|@safe/trusted/system|Suivant si des segfaults sont envisageable|
+|@nothrow|Suivant si des segfaults sont envisageable|
+|@pure|Ne dépends que de ses args (Maths)|
+|@creez_le_votre|[Regarder ici](http://dlang.org/attribute.html#UserDefinedAttribute)|
+</div>
+</section>
+    
+<section data-markdown>
+## Universal Function Call Syntax (UFCS)
+Peut paraître sale au premier abord, mais super pratique !
+```d
+function(arg0, arg1);
+arg0.function(arg1);//même chose
+
+function2(arg0);
+arg0.function2();//même chose
+arg0.function2;//même chose
+
+```
+Permet d'éviter les "friend" quand ont veut étendre des fonctionnalités déja implémentées:
+```d
+string randomizeCase(in string s){...}
+someString.randomizeCase();
+```
+Permet d'enchaîner plein de trucs:
+```d
+"Hello Gay World".strip.randomizeCase.rainbowString.center(80,"~")
+```
+</section>
+    
+<section>
+<div data-markdown>
+## UFCS - @property
+C++
+```cpp
+class Yolo{//Solution 1, verbeuse
+public:
+    GetName(){return m_name;}
+    SetName(string name){m_name = name;}
+private:
+    string m_name;
+};
+yoloInstance.GetName();
+yoloInstance.SetName("toto");
+
+class Yolo{//Solution 2, pose des limites
+public:
+    string name;
+};
+yoloInstance.name;
+yoloInstance.name = "toto";
+```
+</div>
+<div class="fragment zoom-in" data-markdown>
+```cpp
+//Problème
+class Yolo{
+public:
+    string name;
+    int GetAge(){return aujourdhui - m_datenaissance;}
+private:
+    //...
+};
+//deux getters, deux syntaxes différentes
+yoloInstance.name;
+yoloInstance.GetAge();
+```
+</div>
+</section>
+    
+<section data-markdown>
+## UFCS - @property
+D
+```d
+class Yolo{
+public:
+    string name;
+    @property int age(){return aujourdhui - m_datenaissance;}
+private:
+    //...
+}
+//Même syntaxe
+yoloInstance.name;
+yoloInstance.age;
+```
+</section>
+    
+<section>
+<div data-markdown>
+## Encapsulation
+En D, on peut encapsuler n'importe qui n'importe où !
+
+```d
+class A{
+  import std.stdio;
+  void fun(){
+    import std.stream;
+    class Handy{
+      struct yolo{
+       //...
+      }
+    }
+
+    void wtf(int arf){
+      //...
+    }
+  }
+}
+```
+</div>
+</section>
+    
+<section data-markdown>
+# Templates
+On verra ça mieux plus tard !
+
+C++
+```cpp
+//something&lt;sometemplate&gt;
+vector&lt;int&gt; var;
+vector&lt;vector&lt;int&gt; &gt; var;
+```
+D
+```d
+//something!sometemplate;
+to!string(12);
+Tuple!(int, string)(42, "La réponse");
+```
+</section>
+
+<!-- TODO -->
+<section data-markdown>
+    # Be lazy !
+    ```d
+
+    ```
+</section>
+
+</section>
+<!-- ============================================================================ --> 
+                
+<section>
+<section>
+<h1>Tests qualité</h1>
+<img src="img/unittest.svg" class="raw stretch"/>
+</section>
+    
+<section data-markdown>
+## En bref...
+
+- Automatiser des tests du programme
+- Valider le bon fonctionnement du programme
+- Limite la casse quand refactoring
+</section>
+    
+<section data-markdown>
+## unittest{ }
+```d
+unittest{
+    assert((1==2) == false, "Gros problème avec les booléens");
+    assert((5+3)==8, "Gros problème avec les additions");
+    //...
+}
+```
+- Ces blocs s'éxécutent avant le main
+- Peut contenir des classes, fonctions, n'importe quoi...
+
+-----
+
+###### Console
+```bash
+dmd -unittest main.d
+./main
+```
+- Execute les tests unitaires puis le programme
+</section>
+    
+<section data-markdown>
+## Coverage
+
+- Permet d'évaluer si les tests unitaires ont été bien écrits
+- Indique combien de fois ont été éxécutées chaque ligne du programme
+- Renvoi un pourcentage entre lignes éxécutées/non éxécutées
+
+```bash
+dmd -cov main.d
+./main
+cat main.lst
+```
+</section>
+    
+<section data-markdown>
+## Prog. par contrat
+- On définit les contraintes de la fonction (avant de l'écrire)
+    - Entrées, avant l'éxécution de la fonction
+    - Sorties, après l'éxécution de la fonction
+- On définit la validité d'un objet
+    - A chaque modification de l'objet, on le vérifie
+- L'option -release permet de désactiver ces tests
+
+```d
+int function()
+in{
+    //Entrée, permet de vérif. les args
+}
+out(value){
+    //Sortie, permet de vérif que l'entier retourné (value) est cohérent
+}
+body{
+    //Définition de la fonction
+}
+```
+</section>
+</section>
+<!-- ============================================================================ --> 
+                
+<section>
+<!--TODO-->
+<section>
+    <h1>Map / Reduce</h1>
+    <img src="img/mapreduce.svg" class="raw stretch"/>
+    <h3>On dit adieu aux boucles !</h3>
+</section>
+    
+<section data-markdown>
+    - Fonctionnalitée présente dans de nombreux langages fonctionnels
+    - cf [Introduction au Big Data de Pierre Zemb](http://slides.pierrezemb.fr/big-data-isen/#/)
+</section>
+    
+<section data-markdown>
+    ## Exemple Map
+    #### Convertir une chaîne de caractères en 1337 5P34K:
+
+    - "Leet is so dificult to write !"
+    - Devient "1337\_IS\_SO\_D1F1CU17\_TO\_WR173\_!"
+
+    ---
+    #### Règles
+    - Passage en majuscules
+    - Les mots de moins de 2 lettres sont conservés
+    - Les autres sont convertis char par char (A=>4, I=>1, ...)
+    - Les espaces sont comblés par des "_"
+</section>
+    
+<section data-markdown>
+## Solution avec boucles
+```d
+string ret;
+string[] words = s.toUpper.split(' ');
+foreach(index, string word ; words){
+  if(word.length&lt;=2)
+    ret ~= word;
+  else{
+    foreach(dchar c ; word){
+      switch(c){
+        case 'A': ret~='4'; break;
+        case 'O': ret~='0'; break;
+        case 'T': ret~='7'; break;
+        case 'E': ret~='3'; break;
+        case 'I': ret~='1'; break;
+        default:  ret~=c; break;
+      }
+    }
+  }
+  if(index&lt;words.length-1)
+    ret ~= "_";
+}
+return ret;
+```
+</section>
+<section data-markdown>
+## Solution avec map
+### (Pipeline Programming)
+```d
+return s.toUpper
+  .splitter(' ')
+  .map!(function(string word){
+    if(word.length&lt;=2)
+      return word;
+    return word.map!(function(dchar c){
+      switch(c){
+        case 'A': return '4';
+        case 'O': return '0';
+        case 'T': return '7';
+        case 'E': return '3';
+        case 'I','L': return '1'; break;
+        default:  return c;
+      }
+    }).to!string;
+  })
+  .join("_");
+```
+</section>
+<section data-markdown>
+## Avantages
+- Multithreading facile: `std.parallelism:amap`
+- Laisser les fonctions optimisées travailler à notre place
+- Moins d'allocations mémoire (passage des vars en interne)
+- Lazy: Ne calcule que les valeurs nécessaires et au dernier moment
+- Ecriture "plus naturelle"
+</section>
+    
+</section>
+<!-- ============================================================================ --> 
+<section>
+<section>
+    <h1>Templates Meta-prog</h1>
+    <img src="img/templates.svg" class="raw stretch"/>
+</section> 
+    
+<section data-markdown>
+    http://nomad.so/2013/07/templates-in-d-explained/
+</section>
+</section>
+<!-- ============================================================================ --> 
     
     
     
